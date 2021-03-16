@@ -33,8 +33,9 @@ public class Array<E> {
     // 在index索引的位置插入一个新元素e
     public void add(int index, E e){
 
-        if(index < 0 || index > size)
+        if(index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
+        }
 
         if(size == data.length)
             resize(2 * data.length);
