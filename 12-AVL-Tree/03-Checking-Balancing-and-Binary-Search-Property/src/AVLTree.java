@@ -33,21 +33,24 @@ public class AVLTree<K extends Comparable<K>, V> {
         return size == 0;
     }
 
-    // 判断该二叉树是否是一棵二分搜索树
+    // 判断该二叉树是否是一棵二分搜索树-中序遍历：出来元素顺序是由小到大的
     public boolean isBST(){
 
         ArrayList<K> keys = new ArrayList<>();
         inOrder(root, keys);
-        for(int i = 1 ; i < keys.size() ; i ++)
-            if(keys.get(i - 1).compareTo(keys.get(i)) > 0)
+        for(int i = 1 ; i < keys.size() ; i ++) {
+            if(keys.get(i - 1).compareTo(keys.get(i)) > 0) {
                 return false;
+            }
+        }
         return true;
     }
 
     private void inOrder(Node node, ArrayList<K> keys){
 
-        if(node == null)
+        if(node == null) {
             return;
+        }
 
         inOrder(node.left, keys);
         keys.add(node.key);
@@ -59,29 +62,34 @@ public class AVLTree<K extends Comparable<K>, V> {
         return isBalanced(root);
     }
 
-    // 判断以Node为根的二叉树是否是一棵平衡二叉树，递归算法
+    // 判断以Node为根的二叉树是否是一棵平衡二叉树，递归算法-
+    // 每一个节点的左右子树的高度差小于1
     private boolean isBalanced(Node node){
 
-        if(node == null)
+        if(node == null) {
             return true;
+        }
 
         int balanceFactor = getBalanceFactor(node);
-        if(Math.abs(balanceFactor) > 1)
+        if(Math.abs(balanceFactor) > 1) {
             return false;
+        }
         return isBalanced(node.left) && isBalanced(node.right);
     }
 
     // 获得节点node的高度
     private int getHeight(Node node){
-        if(node == null)
+        if(node == null) {
             return 0;
+        }
         return node.height;
     }
 
     // 获得节点node的平衡因子
     private int getBalanceFactor(Node node){
-        if(node == null)
+        if(node == null) {
             return 0;
+        }
         return getHeight(node.left) - getHeight(node.right);
     }
 
@@ -99,20 +107,23 @@ public class AVLTree<K extends Comparable<K>, V> {
             return new Node(key, value);
         }
 
-        if(key.compareTo(node.key) < 0)
+        if(key.compareTo(node.key) < 0) {
             node.left = add(node.left, key, value);
-        else if(key.compareTo(node.key) > 0)
+        } else if(key.compareTo(node.key) > 0) {
             node.right = add(node.right, key, value);
-        else // key.compareTo(node.key) == 0
+        } else // key.compareTo(node.key) == 0
+        {
             node.value = value;
+        }
 
         // 更新height
         node.height = 1 + Math.max(getHeight(node.left), getHeight(node.right));
 
         // 计算平衡因子
         int balanceFactor = getBalanceFactor(node);
-        if(Math.abs(balanceFactor) > 1)
+        if(Math.abs(balanceFactor) > 1) {
             System.out.println("unbalanced : " + balanceFactor);
+        }
 
         return node;
     }
@@ -120,15 +131,18 @@ public class AVLTree<K extends Comparable<K>, V> {
     // 返回以node为根节点的二分搜索树中，key所在的节点
     private Node getNode(Node node, K key){
 
-        if(node == null)
+        if(node == null) {
             return null;
+        }
 
-        if(key.equals(node.key))
+        if(key.equals(node.key)) {
             return node;
-        else if(key.compareTo(node.key) < 0)
+        } else if(key.compareTo(node.key) < 0) {
             return getNode(node.left, key);
-        else // if(key.compareTo(node.key) > 0)
+        } else // if(key.compareTo(node.key) > 0)
+        {
             return getNode(node.right, key);
+        }
     }
 
     public boolean contains(K key){
@@ -143,16 +157,18 @@ public class AVLTree<K extends Comparable<K>, V> {
 
     public void set(K key, V newValue){
         Node node = getNode(root, key);
-        if(node == null)
+        if(node == null) {
             throw new IllegalArgumentException(key + " doesn't exist!");
+        }
 
         node.value = newValue;
     }
 
     // 返回以node为根的二分搜索树的最小值所在的节点
     private Node minimum(Node node){
-        if(node.left == null)
+        if(node.left == null) {
             return node;
+        }
         return minimum(node.left);
     }
 
@@ -184,8 +200,9 @@ public class AVLTree<K extends Comparable<K>, V> {
 
     private Node remove(Node node, K key){
 
-        if( node == null )
+        if( node == null ) {
             return null;
+        }
 
         if( key.compareTo(node.key) < 0 ){
             node.left = remove(node.left , key);
@@ -237,10 +254,11 @@ public class AVLTree<K extends Comparable<K>, V> {
 
             AVLTree<String, Integer> map = new AVLTree<>();
             for (String word : words) {
-                if (map.contains(word))
+                if (map.contains(word)) {
                     map.set(word, map.get(word) + 1);
-                else
+                } else {
                     map.add(word, 1);
+                }
             }
 
             System.out.println("Total different words: " + map.getSize());

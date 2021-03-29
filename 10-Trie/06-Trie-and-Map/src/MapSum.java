@@ -30,8 +30,9 @@ public class MapSum {
         Node cur = root;
         for(int i = 0 ; i < key.length() ; i ++){
             char c = key.charAt(i);
-            if(cur.next.get(c) == null)
+            if(cur.next.get(c) == null) {
                 cur.next.put(c, new Node());
+            }
             cur = cur.next.get(c);
         }
         cur.value = val;

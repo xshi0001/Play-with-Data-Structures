@@ -37,11 +37,13 @@ public class Array<E> {
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
         }
 
-        if(size == data.length)
+        if(size == data.length) {
             resize(2 * data.length);
+        }
 
-        for(int i = size - 1; i >= index ; i --)
+        for(int i = size - 1; i >= index ; i --) {
             data[i + 1] = data[i];
+        }
 
         data[index] = e;
 
@@ -60,8 +62,9 @@ public class Array<E> {
 
     // 获取index索引位置的元素
     public E get(int index){
-        if(index < 0 || index >= size)
+        if(index < 0 || index >= size) {
             throw new IllegalArgumentException("Get failed. Index is illegal.");
+        }
         return data[index];
     }
 
@@ -75,16 +78,18 @@ public class Array<E> {
 
     // 修改index索引位置的元素为e
     public void set(int index, E e){
-        if(index < 0 || index >= size)
+        if(index < 0 || index >= size) {
             throw new IllegalArgumentException("Set failed. Index is illegal.");
+        }
         data[index] = e;
     }
 
     // 查找数组中是否有元素e
     public boolean contains(E e){
         for(int i = 0 ; i < size ; i ++){
-            if(data[i].equals(e))
+            if(data[i].equals(e)) {
                 return true;
+            }
         }
         return false;
     }
@@ -92,25 +97,29 @@ public class Array<E> {
     // 查找数组中元素e所在的索引，如果不存在元素e，则返回-1
     public int find(E e){
         for(int i = 0 ; i < size ; i ++){
-            if(data[i].equals(e))
+            if(data[i].equals(e)) {
                 return i;
+            }
         }
         return -1;
     }
 
     // 从数组中删除index位置的元素, 返回删除的元素
     public E remove(int index){
-        if(index < 0 || index >= size)
+        if(index < 0 || index >= size) {
             throw new IllegalArgumentException("Remove failed. Index is illegal.");
+        }
 
         E ret = data[index];
-        for(int i = index + 1 ; i < size ; i ++)
+        for(int i = index + 1 ; i < size ; i ++) {
             data[i - 1] = data[i];
+        }
         size --;
         data[size] = null; // loitering objects != memory leak
 
-        if(size == data.length / 4 && data.length / 2 != 0)
+        if(size == data.length / 4 && data.length / 2 != 0) {
             resize(data.length / 2);
+        }
         return ret;
     }
 
@@ -127,8 +136,9 @@ public class Array<E> {
     // 从数组中删除元素e
     public void removeElement(E e){
         int index = find(e);
-        if(index != -1)
+        if(index != -1) {
             remove(index);
+        }
     }
 
     @Override
@@ -139,8 +149,9 @@ public class Array<E> {
         res.append('[');
         for(int i = 0 ; i < size ; i ++){
             res.append(data[i]);
-            if(i != size - 1)
+            if(i != size - 1) {
                 res.append(", ");
+            }
         }
         res.append(']');
         return res.toString();
@@ -150,8 +161,9 @@ public class Array<E> {
     private void resize(int newCapacity){
 
         E[] newData = (E[])new Object[newCapacity];
-        for(int i = 0 ; i < size ; i ++)
+        for(int i = 0 ; i < size ; i ++) {
             newData[i] = data[i];
+        }
         data = newData;
     }
 }

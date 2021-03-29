@@ -11,8 +11,9 @@ class Solution {
             delNode.next = null;
         }
 
-        if(head == null)
+        if(head == null) {
             return head;
+        }
 
         ListNode prev = head;
         while(prev.next != null){
@@ -21,8 +22,9 @@ class Solution {
                 prev.next = delNode.next;
                 delNode.next = null;
             }
-            else
+            else {
                 prev = prev.next;
+            }
         }
 
         return head;

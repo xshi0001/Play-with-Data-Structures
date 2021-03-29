@@ -38,8 +38,9 @@ public class RBTree<K extends Comparable<K>, V> {
 
     // 判断节点node的颜色
     private boolean isRed(Node node){
-        if(node == null)
+        if(node == null) {
             return BLACK;
+        }
         return node.color;
     }
 
@@ -104,21 +105,26 @@ public class RBTree<K extends Comparable<K>, V> {
             return new Node(key, value); // 默认插入红色节点
         }
 
-        if(key.compareTo(node.key) < 0)
+        if(key.compareTo(node.key) < 0) {
             node.left = add(node.left, key, value);
-        else if(key.compareTo(node.key) > 0)
+        } else if(key.compareTo(node.key) > 0) {
             node.right = add(node.right, key, value);
-        else // key.compareTo(node.key) == 0
+        } else // key.compareTo(node.key) == 0
+        {
             node.value = value;
-
-        if (isRed(node.right) && !isRed(node.left))
+        }
+        // 三个判断都要经历
+        if (isRed(node.right) && !isRed(node.left)) {
             node = leftRotate(node);
+        }
 
-        if (isRed(node.left) && isRed(node.left.left))
+        if (isRed(node.left) && isRed(node.left.left)) {
             node = rightRotate(node);
+        }
 
-        if (isRed(node.left) && isRed(node.right))
+        if (isRed(node.left) && isRed(node.right)) {
             flipColors(node);
+        }
 
         return node;
     }
@@ -126,15 +132,18 @@ public class RBTree<K extends Comparable<K>, V> {
     // 返回以node为根节点的二分搜索树中，key所在的节点
     private Node getNode(Node node, K key){
 
-        if(node == null)
+        if(node == null) {
             return null;
+        }
 
-        if(key.equals(node.key))
+        if(key.equals(node.key)) {
             return node;
-        else if(key.compareTo(node.key) < 0)
+        } else if(key.compareTo(node.key) < 0) {
             return getNode(node.left, key);
-        else // if(key.compareTo(node.key) > 0)
+        } else // if(key.compareTo(node.key) > 0)
+        {
             return getNode(node.right, key);
+        }
     }
 
     public boolean contains(K key){
@@ -149,16 +158,18 @@ public class RBTree<K extends Comparable<K>, V> {
 
     public void set(K key, V newValue){
         Node node = getNode(root, key);
-        if(node == null)
+        if(node == null) {
             throw new IllegalArgumentException(key + " doesn't exist!");
+        }
 
         node.value = newValue;
     }
 
     // 返回以node为根的二分搜索树的最小值所在的节点
     private Node minimum(Node node){
-        if(node.left == null)
+        if(node.left == null) {
             return node;
+        }
         return minimum(node.left);
     }
 
@@ -190,8 +201,9 @@ public class RBTree<K extends Comparable<K>, V> {
 
     private Node remove(Node node, K key){
 
-        if( node == null )
+        if( node == null ) {
             return null;
+        }
 
         if( key.compareTo(node.key) < 0 ){
             node.left = remove(node.left , key);
@@ -238,15 +250,16 @@ public class RBTree<K extends Comparable<K>, V> {
         System.out.println("Pride and Prejudice");
 
         ArrayList<String> words = new ArrayList<>();
-        if(FileOperation.readFile("pride-and-prejudice.txt", words)) {
+        if(FileOperation.readFile("D:\\BaiduNetdiskDownload\\玩转数据结构 从入门到进阶-JClearLove\\Play-with-Data-Structures\\13-Red-Black-Tree\\07-Adding-Elements-in-Red-Black-Tree\\pride-and-prejudice.txt", words)) {
             System.out.println("Total words: " + words.size());
 
             RBTree<String, Integer> map = new RBTree<>();
             for (String word : words) {
-                if (map.contains(word))
+                if (map.contains(word)) {
                     map.set(word, map.get(word) + 1);
-                else
+                } else {
                     map.add(word, 1);
+                }
             }
 
             System.out.println("Total different words: " + map.getSize());

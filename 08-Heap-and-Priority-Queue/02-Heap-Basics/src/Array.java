@@ -59,23 +59,26 @@ public class Array<E> {
 
     // 获取index索引位置的元素
     public E get(int index){
-        if(index < 0 || index >= size)
+        if(index < 0 || index >= size) {
             throw new IllegalArgumentException("Get failed. Index is illegal.");
+        }
         return data[index];
     }
 
     // 修改index索引位置的元素为e
     public void set(int index, E e){
-        if(index < 0 || index >= size)
+        if(index < 0 || index >= size) {
             throw new IllegalArgumentException("Set failed. Index is illegal.");
+        }
         data[index] = e;
     }
 
     // 查找数组中是否有元素e
     public boolean contains(E e){
         for(int i = 0 ; i < size ; i ++){
-            if(data[i].equals(e))
+            if(data[i].equals(e)) {
                 return true;
+            }
         }
         return false;
     }

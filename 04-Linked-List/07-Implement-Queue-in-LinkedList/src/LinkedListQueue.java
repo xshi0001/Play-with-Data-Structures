@@ -44,6 +44,7 @@ public class LinkedListQueue<E> implements Queue<E> {
 
     @Override
     public void enqueue(E e){
+        // 链表为空
         if(tail == null){
             tail = new Node(e);
             head = tail;
@@ -57,22 +58,25 @@ public class LinkedListQueue<E> implements Queue<E> {
 
     @Override
     public E dequeue(){
-        if(isEmpty())
+        if(isEmpty()) {
             throw new IllegalArgumentException("Cannot dequeue from an empty queue.");
+        }
 
         Node retNode = head;
         head = head.next;
         retNode.next = null;
-        if(head == null)
+        if(head == null) {
             tail = null;
+        }
         size --;
         return retNode.e;
     }
 
     @Override
     public E getFront(){
-        if(isEmpty())
+        if(isEmpty()) {
             throw new IllegalArgumentException("Queue is empty.");
+        }
         return head.e;
     }
 

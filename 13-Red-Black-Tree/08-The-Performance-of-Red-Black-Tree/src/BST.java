@@ -45,12 +45,14 @@ public class BST<K extends Comparable<K>, V> {
             return new Node(key, value);
         }
 
-        if(key.compareTo(node.key) < 0)
+        if(key.compareTo(node.key) < 0) {
             node.left = add(node.left, key, value);
-        else if(key.compareTo(node.key) > 0)
+        } else if(key.compareTo(node.key) > 0) {
             node.right = add(node.right, key, value);
-        else // key.compareTo(node.key) == 0
+        } else // key.compareTo(node.key) == 0
+        {
             node.value = value;
+        }
 
         return node;
     }
@@ -58,15 +60,18 @@ public class BST<K extends Comparable<K>, V> {
     // 返回以node为根节点的二分搜索树中，key所在的节点
     private Node getNode(Node node, K key){
 
-        if(node == null)
+        if(node == null) {
             return null;
+        }
 
-        if(key.equals(node.key))
+        if(key.equals(node.key)) {
             return node;
-        else if(key.compareTo(node.key) < 0)
+        } else if(key.compareTo(node.key) < 0) {
             return getNode(node.left, key);
-        else // if(key.compareTo(node.key) > 0)
+        } else // if(key.compareTo(node.key) > 0)
+        {
             return getNode(node.right, key);
+        }
     }
 
     public boolean contains(K key){
@@ -81,16 +86,18 @@ public class BST<K extends Comparable<K>, V> {
 
     public void set(K key, V newValue){
         Node node = getNode(root, key);
-        if(node == null)
+        if(node == null) {
             throw new IllegalArgumentException(key + " doesn't exist!");
+        }
 
         node.value = newValue;
     }
 
     // 返回以node为根的二分搜索树的最小值所在的节点
     private Node minimum(Node node){
-        if(node.left == null)
+        if(node.left == null) {
             return node;
+        }
         return minimum(node.left);
     }
 
@@ -122,8 +129,9 @@ public class BST<K extends Comparable<K>, V> {
 
     private Node remove(Node node, K key){
 
-        if( node == null )
+        if( node == null ) {
             return null;
+        }
 
         if( key.compareTo(node.key) < 0 ){
             node.left = remove(node.left , key);
@@ -175,10 +183,11 @@ public class BST<K extends Comparable<K>, V> {
 
             BST<String, Integer> map = new BST<>();
             for (String word : words) {
-                if (map.contains(word))
+                if (map.contains(word)) {
                     map.set(word, map.get(word) + 1);
-                else
+                } else {
                     map.add(word, 1);
+                }
             }
 
             System.out.println("Total different words: " + map.getSize());

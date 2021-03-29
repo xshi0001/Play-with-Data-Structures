@@ -40,8 +40,9 @@ public class Solution {
 
         // 判断节点node的颜色
         private boolean isRed(Node node){
-            if(node == null)
+            if(node == null) {
                 return BLACK;
+            }
             return node.color;
         }
 
@@ -106,21 +107,26 @@ public class Solution {
                 return new Node(key, value); // 默认插入红色节点
             }
 
-            if(key.compareTo(node.key) < 0)
+            if(key.compareTo(node.key) < 0) {
                 node.left = add(node.left, key, value);
-            else if(key.compareTo(node.key) > 0)
+            } else if(key.compareTo(node.key) > 0) {
                 node.right = add(node.right, key, value);
-            else // key.compareTo(node.key) == 0
+            } else // key.compareTo(node.key) == 0
+            {
                 node.value = value;
+            }
 
-            if (isRed(node.right) && !isRed(node.left))
+            if (isRed(node.right) && !isRed(node.left)) {
                 node = leftRotate(node);
+            }
 
-            if (isRed(node.left) && isRed(node.left.left))
+            if (isRed(node.left) && isRed(node.left.left)) {
                 node = rightRotate(node);
+            }
 
-            if (isRed(node.left) && isRed(node.right))
+            if (isRed(node.left) && isRed(node.right)) {
                 flipColors(node);
+            }
 
             return node;
         }
@@ -128,15 +134,18 @@ public class Solution {
         // 返回以node为根节点的二分搜索树中，key所在的节点
         private Node getNode(Node node, K key){
 
-            if(node == null)
+            if(node == null) {
                 return null;
+            }
 
-            if(key.equals(node.key))
+            if(key.equals(node.key)) {
                 return node;
-            else if(key.compareTo(node.key) < 0)
+            } else if(key.compareTo(node.key) < 0) {
                 return getNode(node.left, key);
-            else // if(key.compareTo(node.key) > 0)
+            } else // if(key.compareTo(node.key) > 0)
+            {
                 return getNode(node.right, key);
+            }
         }
 
         public boolean contains(K key){
@@ -151,8 +160,9 @@ public class Solution {
 
         public void set(K key, V newValue){
             Node node = getNode(root, key);
-            if(node == null)
+            if(node == null) {
                 throw new IllegalArgumentException(key + " doesn't exist!");
+            }
 
             node.value = newValue;
         }
@@ -169,8 +179,9 @@ public class Solution {
         RBTree<String, Object> set = new RBTree<>();
         for(String word: words){
             StringBuilder res = new StringBuilder();
-            for(int i = 0 ; i < word.length() ; i ++)
+            for(int i = 0 ; i < word.length() ; i ++) {
                 res.append(codes[word.charAt(i) - 'a']);
+            }
 
             set.add(res.toString(), null);
         }

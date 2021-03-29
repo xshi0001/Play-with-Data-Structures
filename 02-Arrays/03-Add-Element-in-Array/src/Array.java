@@ -49,14 +49,17 @@ public class Array {
     // 在index索引的位置插入一个新元素e
     public void add(int index, int e){
 
-        if(size == data.length)
+        if(size == data.length) {
             throw new IllegalArgumentException("Add failed. Array is full.");
+        }
 
-        if(index < 0 || index > size)
+        if(index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed. Require index >= 0 and index <= size.");
+        }
 
-        for(int i = size - 1; i >= index ; i --)
+        for(int i = size - 1; i >= index ; i --) {
             data[i + 1] = data[i];
+        }
 
         data[index] = e;
 

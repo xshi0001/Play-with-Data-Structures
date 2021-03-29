@@ -1,6 +1,6 @@
 // 我们的第一版Union-Find
 public class UnionFind1 implements UF {
-
+    // 集合编号
     private int[] id;    // 我们的第一版Union-Find本质就是一个数组
 
     public UnionFind1(int size) {
@@ -44,7 +44,7 @@ public class UnionFind1 implements UF {
         if (pID == qID)
             return;
 
-        // 合并过程需要遍历一遍所有元素, 将两个元素的所属集合编号合并
+        // 合并过程需要遍历查找一遍所有元素, 将两个元素的所属集合编号合并
         for (int i = 0; i < id.length; i++)
             if (id[i] == pID)
                 id[i] = qID;

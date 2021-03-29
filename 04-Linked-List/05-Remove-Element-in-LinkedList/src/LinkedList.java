@@ -45,13 +45,16 @@ public class LinkedList<E> {
     // 在链表中不是一个常用的操作，练习用：）
     public void add(int index, E e){
 
-        if(index < 0 || index > size)
+        if(index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed. Illegal index.");
+        }
 
         Node prev = dummyHead;
-        for(int i = 0 ; i < index ; i ++)
+        for(int i = 0 ; i < index ; i ++) {
             prev = prev.next;
-
+        }
+        // 先新增元素的下个结点指引信息
+        // 新增结点赋值给前一个元素的下一个结点信息
         prev.next = new Node(e, prev.next);
         size ++;
     }
@@ -70,12 +73,14 @@ public class LinkedList<E> {
     // 在链表中不是一个常用的操作，练习用：）
     public E get(int index){
 
-        if(index < 0 || index >= size)
+        if(index < 0 || index >= size) {
             throw new IllegalArgumentException("Get failed. Illegal index.");
+        }
 
         Node cur = dummyHead.next;
-        for(int i = 0 ; i < index ; i ++)
+        for(int i = 0 ; i < index ; i ++) {
             cur = cur.next;
+        }
         return cur.e;
     }
 
@@ -119,11 +124,14 @@ public class LinkedList<E> {
             throw new IllegalArgumentException("Remove failed. Index is illegal.");
 
         Node prev = dummyHead;
+        // 查找的前一个元素
         for(int i = 0 ; i < index ; i ++)
             prev = prev.next;
-
+        //查找到被删除元素
         Node retNode = prev.next;
+        // 将被删除元素的指引赋值给前一个元素的下一个元素
         prev.next = retNode.next;
+        //被删除元素为null
         retNode.next = null;
         size --;
 

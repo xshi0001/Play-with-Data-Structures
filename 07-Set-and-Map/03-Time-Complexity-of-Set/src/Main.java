@@ -11,8 +11,9 @@ public class Main {
         if(FileOperation.readFile(filename, words)) {
             System.out.println("Total words: " + words.size());
 
-            for (String word : words)
+            for (String word : words) {
                 set.add(word);
+            }
             System.out.println("Total different words: " + set.getSize());
         }
         long endTime = System.nanoTime();

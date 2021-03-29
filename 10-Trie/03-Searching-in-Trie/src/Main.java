@@ -7,7 +7,7 @@ public class Main {
         System.out.println("Pride and Prejudice");
 
         ArrayList<String> words = new ArrayList<>();
-        if(FileOperation.readFile("pride-and-prejudice.txt", words)){
+        if(FileOperation.readFile("D:\\BaiduNetdiskDownload\\玩转数据结构 从入门到进阶-JClearLove\\Play-with-Data-Structures\\10-Trie\\03-Searching-in-Trie\\pride-and-prejudice.txt", words)){
 
             long startTime = System.nanoTime();
 

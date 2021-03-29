@@ -334,6 +334,7 @@ class Solution {
 
         @Override
         public int compareTo(Freq another){
+            // 当前元素与
             if(this.freq < another.freq)
                 return 1;
             else if(this.freq > another.freq)
@@ -358,6 +359,8 @@ class Solution {
             if(pq.getSize() < k)
                 pq.enqueue(new Freq(key, map.get(key)));
             else if(map.get(key) > pq.getFront().freq){
+                // 出队元素,出的应该是该有限队队列里面的最小值
+                // 队列的元素
                 pq.dequeue();
                 pq.enqueue(new Freq(key, map.get(key)));
             }

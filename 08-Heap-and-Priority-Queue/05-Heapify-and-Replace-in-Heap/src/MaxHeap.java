@@ -13,8 +13,9 @@ public class MaxHeap<E extends Comparable<E>> {
     public MaxHeap(E[] arr){
         data = new Array<>(arr);
         if(arr.length != 1){
-            for(int i = parent(arr.length - 1) ; i >= 0 ; i --)
+            for(int i = parent(arr.length - 1) ; i >= 0 ; i --) {
                 siftDown(i);
+            }
         }
     }
 
@@ -30,8 +31,9 @@ public class MaxHeap<E extends Comparable<E>> {
 
     // 返回完全二叉树的数组表示中，一个索引所表示的元素的父亲节点的索引
     private int parent(int index){
-        if(index == 0)
+        if(index == 0) {
             throw new IllegalArgumentException("index-0 doesn't have parent.");
+        }
         return (index - 1) / 2;
     }
 
@@ -61,8 +63,9 @@ public class MaxHeap<E extends Comparable<E>> {
 
     // 看堆中的最大元素
     public E findMax(){
-        if(data.getSize() == 0)
+        if(data.getSize() == 0) {
             throw new IllegalArgumentException("Can not findMax when heap is empty.");
+        }
         return data.get(0);
     }
 

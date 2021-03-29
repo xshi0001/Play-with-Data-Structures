@@ -22,8 +22,9 @@ public class MaxHeap<E extends Comparable<E>> {
 
     // 返回完全二叉树的数组表示中，一个索引所表示的元素的父亲节点的索引
     private int parent(int index){
-        if(index == 0)
+        if(index == 0) {
             throw new IllegalArgumentException("index-0 doesn't have parent.");
+        }
         return (index - 1) / 2;
     }
 

@@ -1,4 +1,4 @@
-// 我们的第二版Union-Find
+// 我们的第二版Union-Find  根节点
 public class UnionFind2 implements UF {
 
     // 我们的第二版Union-Find, 使用一个数组构建一棵指向父节点的树
@@ -23,13 +23,15 @@ public class UnionFind2 implements UF {
     // 查找过程, 查找元素p所对应的集合编号
     // O(h)复杂度, h为树的高度
     private int find(int p){
-        if(p < 0 || p >= parent.length)
+        if(p < 0 || p >= parent.length) {
             throw new IllegalArgumentException("p is out of bound.");
+        }
 
         // 不断去查询自己的父亲节点, 直到到达根节点
-        // 根节点的特点: parent[p] == p
-        while(p != parent[p])
+        // 根节点的特点: parent[p] == p -根节点的父节点指向自己
+        while(p != parent[p]) {
             p = parent[p];
+        }
         return p;
     }
 
@@ -50,7 +52,7 @@ public class UnionFind2 implements UF {
 
         if( pRoot == qRoot )
             return;
-
+        //如果不相等，那么就将pRoot那个树的跟节点变成qRoot结点
         parent[pRoot] = qRoot;
     }
 }

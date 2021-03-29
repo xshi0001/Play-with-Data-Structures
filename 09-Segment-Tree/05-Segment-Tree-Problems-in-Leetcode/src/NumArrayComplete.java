@@ -133,4 +133,5 @@ class NumArrayComplete {
 
         return segmentTree.query(i, j);
     }
+
 }

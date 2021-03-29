@@ -55,15 +55,17 @@ public class LinkedList<E> {
     // 在链表中不是一个常用的操作，练习用：）
     public void add(int index, E e){
 
-        if(index < 0 || index > size)
+        if(index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed. Illegal index.");
+        }
 
-        if(index == 0)
+        if(index == 0) {
             addFirst(e);
-        else{
+        } else{
             Node prev = head;
-            for(int i = 0 ; i < index - 1 ; i ++)
+            for(int i = 0 ; i < index - 1 ; i ++) {
                 prev = prev.next;
+            }
 
 //            Node node = new Node(e);
 //            node.next = prev.next;

@@ -45,12 +45,14 @@ public class LinkedList<E> {
     // 在链表中不是一个常用的操作，练习用：）
     public void add(int index, E e){
 
-        if(index < 0 || index > size)
+        if(index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed. Illegal index.");
+        }
 
         Node prev = dummyHead;
-        for(int i = 0 ; i < index ; i ++)
+        for(int i = 0 ; i < index ; i ++) {
             prev = prev.next;
+        }
 
         prev.next = new Node(e, prev.next);
         size ++;

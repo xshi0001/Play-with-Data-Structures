@@ -93,13 +93,16 @@ public class BST<E extends Comparable<E>> {
         Stack<Node> stack = new Stack<>();
         stack.push(root);
         while(!stack.isEmpty()){
+            // 访问
             Node cur = stack.pop();
             System.out.println(cur.e);
 
-            if(cur.right != null)
+            if(cur.right != null) {
                 stack.push(cur.right);
-            if(cur.left != null)
+            }
+            if(cur.left != null) {
                 stack.push(cur.left);
+            }
         }
     }
 

@@ -92,15 +92,17 @@ public class Solution {
                 dummyHead.next = new Node(key, value, dummyHead.next);
                 size ++;
             }
-            else
+            else {
                 node.value = value;
+            }
         }
 
         @Override
         public void set(K key, V newValue){
             Node node = getNode(key);
-            if(node == null)
+            if(node == null) {
                 throw new IllegalArgumentException(key + " doesn't exist!");
+            }
 
             node.value = newValue;
         }
@@ -131,10 +133,11 @@ public class Solution {
 
         LinkedListMap<Integer, Integer> map = new LinkedListMap<>();
         for(int num: nums1){
-            if(!map.contains(num))
+            if(!map.contains(num)) {
                 map.add(num, 1);
-            else
+            } else {
                 map.set(num, map.get(num) + 1);
+            }
         }
 
         ArrayList<Integer> res = new ArrayList<>();
@@ -142,14 +145,16 @@ public class Solution {
             if(map.contains(num)){
                 res.add(num);
                 map.set(num, map.get(num) - 1);
-                if(map.get(num) == 0)
+                if(map.get(num) == 0) {
                     map.remove(num);
+                }
             }
         }
 
         int[] ret = new int[res.size()];
-        for(int i = 0 ; i < res.size() ; i ++)
+        for(int i = 0 ; i < res.size() ; i ++) {
             ret[i] = res.get(i);
+        }
 
         return ret;
     }

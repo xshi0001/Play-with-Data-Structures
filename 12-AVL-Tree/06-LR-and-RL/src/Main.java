@@ -1,5 +1,4 @@
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class Main {
 
@@ -8,24 +7,26 @@ public class Main {
         System.out.println("Pride and Prejudice");
 
         ArrayList<String> words = new ArrayList<>();
-        if(FileOperation.readFile("pride-and-prejudice.txt", words)) {
+        if (FileOperation.readFile("D:\\BaiduNetdiskDownload\\玩转数据结构 从入门到进阶-JClearLove\\Play-with-Data-Structures\\12-AVL-Tree\\06-LR-and-RL\\src\\pride-and-prejudice.txt", words)) {
             System.out.println("Total words: " + words.size());
 
-            // Collections.sort(words);
+//             Collections.sort(words);
 
             // Test BST
             long startTime = System.nanoTime();
 
             BST<String, Integer> bst = new BST<>();
             for (String word : words) {
-                if (bst.contains(word))
+                if (bst.contains(word)) {
                     bst.set(word, bst.get(word) + 1);
-                else
+                } else {
                     bst.add(word, 1);
+                }
             }
 
-            for(String word: words)
+            for (String word : words) {
                 bst.contains(word);
+            }
 
             long endTime = System.nanoTime();
 
@@ -38,14 +39,16 @@ public class Main {
 
             AVLTree<String, Integer> avl = new AVLTree<>();
             for (String word : words) {
-                if (avl.contains(word))
+                if (avl.contains(word)) {
                     avl.set(word, avl.get(word) + 1);
-                else
+                } else {
                     avl.add(word, 1);
+                }
             }
 
-            for(String word: words)
+            for (String word : words) {
                 avl.contains(word);
+            }
 
             endTime = System.nanoTime();
 

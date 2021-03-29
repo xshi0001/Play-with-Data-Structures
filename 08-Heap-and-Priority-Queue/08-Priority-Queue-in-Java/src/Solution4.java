@@ -31,8 +31,9 @@ public class Solution4 {
         }
 
         LinkedList<Integer> res = new LinkedList<>();
-        while(!pq.isEmpty())
+        while(!pq.isEmpty()) {
             res.add(pq.remove());
+        }
         return res;
     }
 

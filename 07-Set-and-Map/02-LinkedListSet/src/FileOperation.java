@@ -2,6 +2,8 @@ import java.io.BufferedInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
+import java.nio.file.FileSystems;
+import java.nio.file.Path;
 import java.util.ArrayList;
 import java.util.Locale;
 import java.util.Scanner;
@@ -17,7 +19,7 @@ public class FileOperation {
             return false;
         }
 
-        // 文件读取
+        // 文件读取 D:\BaiduNetdiskDownload\玩转数据结构 从入门到进阶-JClearLove\Play-with-Data-Structures\07-Set-and-Map\02-LinkedListSet\a-tale-of-two-cities.txt
         Scanner scanner;
 
         try {
@@ -27,8 +29,9 @@ public class FileOperation {
                 scanner = new Scanner(new BufferedInputStream(fis), "UTF-8");
                 scanner.useLocale(Locale.ENGLISH);
             }
-            else
+            else {
                 return false;
+            }
         }
         catch(IOException ioe){
             System.out.println("Cannot open " + filename);

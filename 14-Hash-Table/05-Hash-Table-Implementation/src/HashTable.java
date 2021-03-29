@@ -10,8 +10,9 @@ public class HashTable<K, V> {
         this.M = M;
         size = 0;
         hashtable = new TreeMap[M];
-        for(int i = 0 ; i < M ; i ++)
+        for(int i = 0 ; i < M ; i ++) {
             hashtable[i] = new TreeMap<>();
+        }
     }
 
     public HashTable(){
@@ -28,9 +29,9 @@ public class HashTable<K, V> {
 
     public void add(K key, V value){
         TreeMap<K, V> map = hashtable[hash(key)];
-        if(map.containsKey(key))
+        if(map.containsKey(key)) {
             map.put(key, value);
-        else{
+        } else{
             map.put(key, value);
             size ++;
         }
@@ -48,8 +49,9 @@ public class HashTable<K, V> {
 
     public void set(K key, V value){
         TreeMap<K, V> map = hashtable[hash(key)];
-        if(!map.containsKey(key))
+        if(!map.containsKey(key)) {
             throw new IllegalArgumentException(key + " doesn't exist!");
+        }
 
         map.put(key, value);
     }

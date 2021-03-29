@@ -17,6 +17,7 @@ public class Solution {
             this.freq = freq;
         }
 
+        @Override
         public int compareTo(Freq another){
             if(this.freq < another.freq)
                 return -1;

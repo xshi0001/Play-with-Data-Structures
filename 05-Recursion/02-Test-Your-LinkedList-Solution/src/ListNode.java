@@ -16,7 +16,9 @@ public class ListNode {
             throw new IllegalArgumentException("arr can not be empty");
 
         this.val = arr[0];
+        // 将当前结点的作为头结点-head
         ListNode cur = this;
+        // 迭代赋值
         for(int i = 1 ; i < arr.length ; i ++){
             cur.next = new ListNode(arr[i]);
             cur = cur.next;
