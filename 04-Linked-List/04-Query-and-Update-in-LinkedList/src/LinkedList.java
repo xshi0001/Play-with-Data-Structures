@@ -45,12 +45,14 @@ public class LinkedList<E> {
     // 在链表中不是一个常用的操作，练习用：）
     public void add(int index, E e) {
 
-        if (index < 0 || index > size)
+        if (index < 0 || index > size) {
             throw new IllegalArgumentException("Add failed. Illegal index.");
+        }
 
         Node prev = dummyHead;
-        for (int i = 0; i < index; i++)
+        for (int i = 0; i < index; i++) {
             prev = prev.next;
+        }
 
         prev.next = new Node(e, prev.next);
         size++;
@@ -70,12 +72,14 @@ public class LinkedList<E> {
     // 在链表中不是一个常用的操作，练习用：）
     public E get(int index) {
 
-        if (index < 0 || index >= size)
+        if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Get failed. Illegal index.");
+        }
 
         Node cur = dummyHead.next;
-        for (int i = 0; i < index; i++)
+        for (int i = 0; i < index; i++) {
             cur = cur.next;
+        }
         return cur.e;
     }
 
@@ -92,12 +96,14 @@ public class LinkedList<E> {
     // 修改链表的第index(0-based)个位置的元素为e
     // 在链表中不是一个常用的操作，练习用：）
     public void set(int index, E e) {
-        if (index < 0 || index >= size)
+        if (index < 0 || index >= size) {
             throw new IllegalArgumentException("Set failed. Illegal index.");
+        }
 
         Node cur = dummyHead.next;
-        for (int i = 0; i < index; i++)
+        for (int i = 0; i < index; i++) {
             cur = cur.next;
+        }
         cur.e = e;
     }
 
@@ -105,8 +111,9 @@ public class LinkedList<E> {
     public boolean contains(E e) {
         Node cur = dummyHead.next;
         while (cur != null) {
-            if (cur.e.equals(e))
+            if (cur.e.equals(e)) {
                 return true;
+            }
             cur = cur.next;
         }
         return false;
@@ -121,8 +128,9 @@ public class LinkedList<E> {
 //            res.append(cur + "->");
 //            cur = cur.next;
 //        }
-        for (Node cur = dummyHead.next; cur != null; cur = cur.next)
+        for (Node cur = dummyHead.next; cur != null; cur = cur.next) {
             res.append(cur).append("->");
+        }
         res.append("NULL");
 
         return res.toString();

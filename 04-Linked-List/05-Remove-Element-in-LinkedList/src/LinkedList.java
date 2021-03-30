@@ -97,12 +97,14 @@ public class LinkedList<E> {
     // 修改链表的第index(0-based)个位置的元素为e
     // 在链表中不是一个常用的操作，练习用：）
     public void set(int index, E e){
-        if(index < 0 || index >= size)
+        if(index < 0 || index >= size) {
             throw new IllegalArgumentException("Set failed. Illegal index.");
+        }
 
         Node cur = dummyHead.next;
-        for(int i = 0 ; i < index ; i ++)
+        for(int i = 0 ; i < index ; i ++) {
             cur = cur.next;
+        }
         cur.e = e;
     }
 
@@ -110,8 +112,9 @@ public class LinkedList<E> {
     public boolean contains(E e){
         Node cur = dummyHead.next;
         while(cur != null){
-            if(cur.e.equals(e))
+            if(cur.e.equals(e)) {
                 return true;
+            }
             cur = cur.next;
         }
         return false;
@@ -120,13 +123,15 @@ public class LinkedList<E> {
     // 从链表中删除index(0-based)位置的元素, 返回删除的元素
     // 在链表中不是一个常用的操作，练习用：）
     public E remove(int index){
-        if(index < 0 || index >= size)
+        if(index < 0 || index >= size) {
             throw new IllegalArgumentException("Remove failed. Index is illegal.");
+        }
 
         Node prev = dummyHead;
         // 查找的前一个元素
-        for(int i = 0 ; i < index ; i ++)
+        for(int i = 0 ; i < index ; i ++) {
             prev = prev.next;
+        }
         //查找到被删除元素
         Node retNode = prev.next;
         // 将被删除元素的指引赋值给前一个元素的下一个元素
@@ -153,8 +158,9 @@ public class LinkedList<E> {
 
         Node prev = dummyHead;
         while(prev.next != null){
-            if(prev.next.e.equals(e))
+            if(prev.next.e.equals(e)) {
                 break;
+            }
             prev = prev.next;
         }
 

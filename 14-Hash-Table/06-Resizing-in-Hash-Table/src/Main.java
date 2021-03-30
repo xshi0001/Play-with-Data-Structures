@@ -7,7 +7,7 @@ public class Main {
         System.out.println("Pride and Prejudice");
 
         ArrayList<String> words = new ArrayList<>();
-        if(FileOperation.readFile("pride-and-prejudice.txt", words)) {
+        if(FileOperation.readFile("D:\\BaiduNetdiskDownload\\玩转数据结构 从入门到进阶-JClearLove\\Play-with-Data-Structures\\14-Hash-Table\\06-Resizing-in-Hash-Table\\pride-and-prejudice.txt", words)) {
             System.out.println("Total words: " + words.size());
 
             // Collections.sort(words);
@@ -17,14 +17,16 @@ public class Main {
 
             BST<String, Integer> bst = new BST<>();
             for (String word : words) {
-                if (bst.contains(word))
+                if (bst.contains(word)) {
                     bst.set(word, bst.get(word) + 1);
-                else
+                } else {
                     bst.add(word, 1);
+                }
             }
 
-            for(String word: words)
+            for(String word: words) {
                 bst.contains(word);
+            }
 
             long endTime = System.nanoTime();
 
@@ -37,14 +39,16 @@ public class Main {
 
             AVLTree<String, Integer> avl = new AVLTree<>();
             for (String word : words) {
-                if (avl.contains(word))
+                if (avl.contains(word)) {
                     avl.set(word, avl.get(word) + 1);
-                else
+                } else {
                     avl.add(word, 1);
+                }
             }
 
-            for(String word: words)
+            for(String word: words) {
                 avl.contains(word);
+            }
 
             endTime = System.nanoTime();
 
@@ -57,14 +61,16 @@ public class Main {
 
             RBTree<String, Integer> rbt = new RBTree<>();
             for (String word : words) {
-                if (rbt.contains(word))
+                if (rbt.contains(word)) {
                     rbt.set(word, rbt.get(word) + 1);
-                else
+                } else {
                     rbt.add(word, 1);
+                }
             }
 
-            for(String word: words)
+            for(String word: words) {
                 rbt.contains(word);
+            }
 
             endTime = System.nanoTime();
 
@@ -78,14 +84,16 @@ public class Main {
             HashTable<String, Integer> ht = new HashTable<>();
             //HashTable<String, Integer> ht = new HashTable<>(131071);
             for (String word : words) {
-                if (ht.contains(word))
+                if (ht.contains(word)) {
                     ht.set(word, ht.get(word) + 1);
-                else
+                } else {
                     ht.add(word, 1);
+                }
             }
 
-            for(String word: words)
+            for(String word: words) {
                 ht.contains(word);
+            }
 
             endTime = System.nanoTime();
 
