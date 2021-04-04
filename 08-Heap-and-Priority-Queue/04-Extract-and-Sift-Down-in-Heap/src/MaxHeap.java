@@ -2,93 +2,96 @@ public class MaxHeap<E extends Comparable<E>> {
 
     private Array<E> data;
 
-    public MaxHeap(int capacity){
+    public MaxHeap(int capacity) {
         data = new Array<>(capacity);
     }
 
-    public MaxHeap(){
+    public MaxHeap() {
         data = new Array<>();
     }
 
     // 返回堆中的元素个数
-    public int size(){
+    public int size() {
         return data.getSize();
     }
 
     // 返回一个布尔值, 表示堆中是否为空
-    public boolean isEmpty(){
+    public boolean isEmpty() {
         return data.isEmpty();
     }
 
     // 返回完全二叉树的数组表示中，一个索引所表示的元素的父亲节点的索引
-    private int parent(int index){
-        if(index == 0) {
+    private int parent(int index) {
+        if (index == 0) {
             throw new IllegalArgumentException("index-0 doesn't have parent.");
         }
         return (index - 1) / 2;
     }
 
     // 返回完全二叉树的数组表示中，一个索引所表示的元素的左孩子节点的索引
-    private int leftChild(int index){
+    private int leftChild(int index) {
         return index * 2 + 1;
     }
 
     // 返回完全二叉树的数组表示中，一个索引所表示的元素的右孩子节点的索引
-    private int rightChild(int index){
+    private int rightChild(int index) {
         return index * 2 + 2;
     }
 
     // 向堆中添加元素
-    public void add(E e){
+    public void add(E e) {
         data.addLast(e);
         siftUp(data.getSize() - 1);
     }
 
-    private void siftUp(int k){
+    private void siftUp(int k) {
 
-        while(k > 0 && data.get(parent(k)).compareTo(data.get(k)) < 0 ){
+        while (k > 0 && data.get(parent(k)).compareTo(data.get(k)) < 0) {
             data.swap(k, parent(k));
             k = parent(k);
         }
     }
 
     // 看堆中的最大元素
-    public E findMax(){
-        if(data.getSize() == 0) {
+    public E findMax() {
+        if (data.getSize() == 0) {
             throw new IllegalArgumentException("Can not findMax when heap is empty.");
         }
         return data.get(0);
     }
 
     // 取出堆中最大元素
-    public E extractMax(){
+    public E extractMax() {
 
         E ret = findMax();
         //删除该元素操作，将最后一个元素与头结点进行交换
         data.swap(0, data.getSize() - 1);
         // 移除过程
         data.removeLast();
-        // 下沉过程
+        // 下沉过程- 将第一个元素下层到应该的位置
         siftDown(0);
 
         return ret;
     }
 
-    private void siftDown(int k){
-
-        while(leftChild(k) < data.getSize()){
-            int j = leftChild(k); // 在此轮循环中,data[k]和data[j]交换位置
+    private void siftDown(int k) {
+        // 一定存在左子树，因为二叉堆是一个完全二叉树，最后一层是堆放起来的
+        // 循环终止条件就是看左子树是否小于数组长度
+        while (leftChild(k) < data.getSize()) {
+            int j = leftChild(k);
+            // 在此轮循环中,data[k]和data[j]交换位置
             // 如果存在右结点，且右结点的值大于左节点，那么就用右结点与当前的k索引位对应的元素比较
-            if( j + 1 < data.getSize() &&
-                    data.get(j + 1).compareTo(data.get(j)) > 0 ) {
-                j ++;
+            if (j + 1 < data.getSize() &&
+                    data.get(j + 1).compareTo(data.get(j)) > 0) {
+                // 取左右子节点的最大值
+                j++;
             }
             // data[j] 是 leftChild 和 rightChild 中的最大值
-
-            if(data.get(k).compareTo(data.get(j)) >= 0 ) {
+            if (data.get(k).compareTo(data.get(j)) >= 0) {
+                //如果出现当前的元素比左右节点的值都大，那么停止下层
                 break;
             }
-
+            // 否则一直交换
             data.swap(k, j);
             k = j;
         }

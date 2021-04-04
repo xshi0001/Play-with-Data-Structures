@@ -33,8 +33,9 @@ public class Solution3 {
         }
 
         ArrayList<Integer> res = new ArrayList<>();
-        while(!output.isEmpty())
+        while(!output.isEmpty()) {
             res.add(output.pop().val);
+        }
         return res;
     }
 }

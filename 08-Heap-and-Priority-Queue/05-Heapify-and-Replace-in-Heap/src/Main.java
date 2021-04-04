@@ -8,21 +8,25 @@ public class Main {
         long startTime = System.nanoTime();
 
         MaxHeap<Integer> maxHeap;
-        if(isHeapify)
+        if(isHeapify) {
             maxHeap = new MaxHeap<>(testData);
-        else{
+        } else{
             maxHeap = new MaxHeap<>(testData.length);
-            for(int num: testData)
+            for(int num: testData) {
                 maxHeap.add(num);
+            }
         }
 
         int[] arr = new int[testData.length];
-        for(int i = 0 ; i < testData.length ; i ++)
+        for(int i = 0 ; i < testData.length ; i ++) {
             arr[i] = maxHeap.extractMax();
+        }
 
-        for(int i = 1 ; i < testData.length ; i ++)
-            if(arr[i-1] < arr[i])
+        for(int i = 1 ; i < testData.length ; i ++) {
+            if(arr[i-1] < arr[i]) {
                 throw new IllegalArgumentException("Error");
+            }
+        }
         System.out.println("Test MaxHeap completed.");
 
         long endTime = System.nanoTime();
@@ -36,8 +40,9 @@ public class Main {
 
         Random random = new Random();
         Integer[] testData1 = new Integer[n];
-        for(int i = 0 ; i < n ; i ++)
+        for(int i = 0 ; i < n ; i ++) {
             testData1[i] = random.nextInt(Integer.MAX_VALUE);
+        }
 
         Integer[] testData2 = Arrays.copyOf(testData1, n);
 

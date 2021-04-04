@@ -14,18 +14,22 @@ public class Solution1 {
     public List<Integer> inorderTraversal(TreeNode root) {
 
         ArrayList<Integer> res = new ArrayList<Integer>();
-        if(root == null)
+        if(root == null) {
             return res;
+        }
 
         Stack<TreeNode> stack = new Stack<>();
         TreeNode cur = root;
         while(cur != null || !stack.empty()){
 
             while(cur != null){
+                // 先入栈
                 stack.push(cur);
+                // 下个子节点
                 cur = cur.left;
             }
 
+            // 出栈
             cur = stack.pop();
             res.add(cur.val);
             cur = cur.right;

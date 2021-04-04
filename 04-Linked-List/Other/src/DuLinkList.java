@@ -1,4 +1,4 @@
-package com.ietree.basic.datastructure.dublinklist;
+
 
 /**
  * 双向链表
@@ -73,7 +73,7 @@ public class DuLinkList<T> {
     }
 
     // 根据索引index获取指定位置的节点
-    public Node getNodeByIndex(int index) {
+    private Node getNodeByIndex(int index) {
 
         if (index < 0 || index > size - 1) {
 
@@ -149,14 +149,18 @@ public class DuLinkList<T> {
                 // 获取插入点的前一个节点
                 Node prev = getNodeByIndex(index - 1);
                 // 获取插入点的节点
-                Node next = prev.next;
-                // 让新节点的next引用指向next节点，prev引用指向prev节点
-                Node newNode = new Node(element, prev, next);
-                // 让prev的next节点指向新节点
-                prev.next = newNode;
-                // 让prev的下一个节点的prev指向新节点
-                next.prev = newNode;
-                size++;
+                Node next = null;
+                if (prev != null) {
+                    next = prev.next;
+                    // 让新节点的next引用指向next节点，prev引用指向prev节点
+                    Node newNode = new Node(element, prev, next);
+                    // 让prev的next节点指向新节点
+                    prev.next = newNode;
+                    // 让prev的下一个节点的prev指向新节点
+                    next.prev = newNode;
+                    size++;
+                }
+
             }
 
         }
@@ -164,7 +168,7 @@ public class DuLinkList<T> {
     }
 
     // 采用尾插法为链表添加新节点
-    public void add(T element) {
+    private void add(T element) {
 
         // 如果该链表还是空链表
         if (header == null) {
@@ -187,7 +191,7 @@ public class DuLinkList<T> {
     }
 
     // 采用头插法为链表添加新节点
-    public void addAtHeader(T element) {
+    private void addAtHeader(T element) {
         // 创建新节点，让新节点的next指向原来的header
         // 并以新节点作为新的header
         header = new Node(element, null, header);
@@ -201,7 +205,7 @@ public class DuLinkList<T> {
     }
 
     // 删除链式线性表中指定索引处的元素
-    public T delete(int index) {
+    private T delete(int index) {
 
         if (index < 0 || index > size - 1) {
 
@@ -265,6 +269,7 @@ public class DuLinkList<T> {
 
     }
 
+    @Override
     public String toString() {
 
         // 链表为空链表
@@ -277,7 +282,7 @@ public class DuLinkList<T> {
             StringBuilder sb = new StringBuilder("[");
             for (Node current = header; current != null; current = current.next) {
 
-                sb.append(current.data.toString() + ", ");
+                sb.append(current.data.toString()).append(", ");
 
             }
             int len = sb.length();
@@ -299,13 +304,39 @@ public class DuLinkList<T> {
             StringBuilder sb = new StringBuilder("[");
             for (Node current = tail; current != null; current = current.prev) {
 
-                sb.append(current.data.toString() + ", ");
+                sb.append(current.data.toString()).append(", ");
 
             }
             int len = sb.length();
             return sb.delete(len - 2, len).append("]").toString();
 
         }
+
+    }
+
+    public static void main(String[] args) {
+
+
+        DuLinkList<String> list = new DuLinkList<String>();
+        list.insert("aaaa", 0);
+        list.add("bbbb");
+        list.insert("cccc", 0);
+        // 在索引为1处插入一个新元素
+        list.insert("dddd", 1);
+        // 输出顺序线性表的元素
+        System.out.println(list);
+        // 删除索引为2处的元素
+        list.delete(2);
+        System.out.println(list);
+        System.out.println(list.reverseToString());
+        // 获取cccc字符串在顺序线性表中的位置
+        System.out.println("cccc在顺序线性表中的位置：" + list.locate("cccc"));
+        System.out.println("链表中索引1处的元素：" + list.get(1));
+        list.remove();
+        System.out.println("调用remove方法后的链表：" + list);
+        list.delete(0);
+        System.out.println("调用delete(0)后的链表：" + list);
+
 
     }
 

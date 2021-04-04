@@ -40,10 +40,11 @@ public class BST<E extends Comparable<E>> {
             return new Node(e);
         }
 
-        if(e.compareTo(node.e) < 0)
+        if(e.compareTo(node.e) < 0) {
             node.left = add(node.left, e);
-        else if(e.compareTo(node.e) > 0)
+        } else if(e.compareTo(node.e) > 0) {
             node.right = add(node.right, e);
+        }
 
         return node;
     }
@@ -56,15 +57,18 @@ public class BST<E extends Comparable<E>> {
     // 看以node为根的二分搜索树中是否包含元素e, 递归算法
     private boolean contains(Node node, E e){
 
-        if(node == null)
+        if(node == null) {
             return false;
+        }
 
-        if(e.compareTo(node.e) == 0)
+        if(e.compareTo(node.e) == 0) {
             return true;
-        else if(e.compareTo(node.e) < 0)
+        } else if(e.compareTo(node.e) < 0) {
             return contains(node.left, e);
-        else // e.compareTo(node.e) > 0
+        } else // e.compareTo(node.e) > 0
+        {
             return contains(node.right, e);
+        }
     }
 
     // 二分搜索树的前序遍历
@@ -74,8 +78,9 @@ public class BST<E extends Comparable<E>> {
 
     // 前序遍历以node为根的二分搜索树, 递归算法
     private void preOrder(Node node){
-        if(node == null)
+        if(node == null) {
             return;
+        }
 
         System.out.println(node.e);
         preOrder(node.left);
@@ -104,8 +109,9 @@ public class BST<E extends Comparable<E>> {
 
     private String generateDepthString(int depth){
         StringBuilder res = new StringBuilder();
-        for(int i = 0 ; i < depth ; i ++)
+        for(int i = 0 ; i < depth ; i ++) {
             res.append("--");
+        }
         return res.toString();
     }
 }

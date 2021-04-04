@@ -9,10 +9,11 @@ public class MaxHeap<E extends Comparable<E>> {
     public MaxHeap(){
         data = new Array<>();
     }
-
+    // heapify - 将任意数组整理成堆的形状
     public MaxHeap(E[] arr){
         data = new Array<>(arr);
         if(arr.length != 1){
+            // 从最后一个子节点查找他的父节点，从右到左依次上浮操作
             for(int i = parent(arr.length - 1) ; i >= 0 ; i --) {
                 siftDown(i);
             }
@@ -81,18 +82,24 @@ public class MaxHeap<E extends Comparable<E>> {
         return ret;
     }
 
-    private void siftDown(int k){
-
-        while(leftChild(k) < data.getSize()){
-            int j = leftChild(k); // 在此轮循环中,data[k]和data[j]交换位置
-            if( j + 1 < data.getSize() &&
-                    data.get(j + 1).compareTo(data.get(j)) > 0 )
-                j ++;
+     private void siftDown(int k) {
+        // 一定存在左子树，因为二叉堆是一个完全二叉树，最后一层是堆放起来的
+        // 循环终止条件就是看左子树是否小于数组长度
+        while (leftChild(k) < data.getSize()) {
+            int j = leftChild(k);
+            // 在此轮循环中,data[k]和data[j]交换位置
+            // 如果存在右结点，且右结点的值大于左节点，那么就用右结点与当前的k索引位对应的元素比较
+            if (j + 1 < data.getSize() &&
+                    data.get(j + 1).compareTo(data.get(j)) > 0) {
+                // 取左右子节点的最大值
+                j++;
+            }
             // data[j] 是 leftChild 和 rightChild 中的最大值
-
-            if(data.get(k).compareTo(data.get(j)) >= 0 )
+            if (data.get(k).compareTo(data.get(j)) >= 0) {
+                //如果出现当前的元素比左右节点的值都大，那么停止下层
                 break;
-
+            }
+            // 否则一直交换
             data.swap(k, j);
             k = j;
         }

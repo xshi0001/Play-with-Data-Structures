@@ -16,8 +16,9 @@ public class Solution5 {
     public List<Integer> postorderTraversal(TreeNode root) {
 
         ArrayList<Integer> res = new ArrayList<Integer>();
-        if(root == null)
+        if(root == null) {
             return res;
+        }
 
         Stack<TreeNode> stack = new Stack<>();
         TreeNode pre = null;
