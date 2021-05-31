@@ -9,7 +9,7 @@ import java.util.Stack;
 // Another Classic Non-Recursive algorithm for preorder traversal
 // Time Complexity: O(n), n is the node number in the tree
 // Space Complexity: O(h), h is the height of the tree
-public class Solution2 {
+public class SolutionNRMacroPerformance2 {
 
     public List<Integer> preorderTraversal(TreeNode root) {
 

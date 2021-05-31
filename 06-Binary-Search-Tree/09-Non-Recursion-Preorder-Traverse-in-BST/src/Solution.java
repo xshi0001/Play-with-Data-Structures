@@ -22,8 +22,9 @@ public class Solution {
     public List<Integer> preorderTraversal(TreeNode root) {
 
         List<Integer> res = new LinkedList<>();
-        if(root == null)
+        if(root == null) {
             return res;
+        }
 
         Stack<TreeNode> stack = new Stack<>();
         stack.push(root);
@@ -31,10 +32,12 @@ public class Solution {
             TreeNode cur = stack.pop();
             res.add(cur.val);
 
-            if(cur.right != null)
+            if(cur.right != null) {
                 stack.push(cur.right);
-            if(cur.left != null)
+            }
+            if(cur.left != null) {
                 stack.push(cur.left);
+            }
         }
 
         return res;

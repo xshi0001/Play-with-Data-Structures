@@ -12,7 +12,7 @@ import java.util.LinkedList;
 //
 // Time Complexity: O(n)
 // Space Complexity: O(n)
-public class Solution3 {
+public class Solution3StackAndLinkedList {
 
     public List<Integer> postorderTraversal(TreeNode root){
 

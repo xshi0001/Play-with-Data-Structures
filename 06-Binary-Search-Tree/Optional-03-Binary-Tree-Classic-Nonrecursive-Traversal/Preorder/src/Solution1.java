@@ -19,11 +19,13 @@ public class Solution1 {
         }
 
         Stack<TreeNode> stack = new Stack<TreeNode>();
+        // 1.先将跟结点入栈
         stack.push(root);
         while(!stack.empty()){
+            //2. 出一个元素，即访问栈顶元素
             TreeNode curNode = stack.pop();
             res.add(curNode.val);
-
+            //3. 左右子树判断是否为空，根据栈的特性，先进后出，所以先放右子树
             if(curNode.right != null) {
                 stack.push(curNode.right);
             }

@@ -11,7 +11,7 @@ import java.util.Stack;
 //
 // Time Complexity: O(n)
 // Space Complexity: O(n)
-public class Solution2 {
+public class Solution2TwoStack {
 
     public List<Integer> postorderTraversal(TreeNode root) {
 

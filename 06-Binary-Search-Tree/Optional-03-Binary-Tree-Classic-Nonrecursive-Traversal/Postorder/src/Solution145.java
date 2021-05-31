@@ -11,7 +11,7 @@ import java.util.Stack;
 //
 // Time Complexity: O(n), n is the node number in the tree
 // Space Complexity: O(h), h is the height of the tree
-public class Solution1 {
+public class Solution145 {
 
     private class TagNode {
         TreeNode node;
@@ -23,7 +23,6 @@ public class Solution1 {
         }
     }
 
-    ;
 
     public List<Integer> postorderTraversal(TreeNode root) {
 
@@ -31,6 +30,7 @@ public class Solution1 {
         if (root == null) {
             return res;
         }
+
 
         Stack<TagNode> stack = new Stack<>();
         TreeNode cur = root;

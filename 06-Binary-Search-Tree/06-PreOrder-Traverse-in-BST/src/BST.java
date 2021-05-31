@@ -59,6 +59,7 @@ public class BST<E extends Comparable<E>> {
 
         if(node == null) {
             return false;
+
         }
 
         if(e.compareTo(node.e) == 0) {
